@@ -750,15 +750,8 @@ public class FitnessApp extends JFrame {
                 JSONObject foodDetails = new JSONObject(response.toString());
 
                 // Extract the default portion size from the API response
-                double apiPortionSize = foodDetails.optDouble("servingSize", 100); // Default to 100g if not specified
-                String apiUnit = foodDetails.optString("servingSizeUnit", "g"); // Default to grams if not specified
-
-                // Display the portion size information to the user
-                String portionSizeMessage = String.format(
-                        "The default portion size is %.2f %s. Your input will be adjusted accordingly.",
-                        apiPortionSize, apiUnit
-                );
-                JOptionPane.showMessageDialog(this, portionSizeMessage);
+                double apiPortionSize = foodDetails.optDouble("servingSize", 100);
+                String apiUnit = foodDetails.optString("servingSizeUnit", "g");
 
                 // Scale nutrients based on portion size ratio
                 double portionRatio = userPortionSize / apiPortionSize;
